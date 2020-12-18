@@ -12,7 +12,7 @@ function writePassword() {
   passwordText.value = password;
 
 }
-// Generate alphabet by assigning the first and last characters of the alphabet to different variables. The for loop will iterate pushing each character of the alphabet onto the array until it reaches Z.
+// Generate alphabet by assigning the first and last characters of the alphabet to different variables. These variables use charCodeAt(0) to set their integer based on the UTF-16 code index. The for loop will iterate pushing each character of the alphabet onto the array as a string until it adds Z.
 function genAlphabet(A, Z) {
   var alphabet = [], i = A.charCodeAt(0), j = Z.charCodeAt(0);
   for (; i <= j; i++) {
@@ -20,7 +20,10 @@ function genAlphabet(A, Z) {
   }
   return alphabet;
 }
+
+// Generates the characters that are available for use in the password generator. User can choose which character types they want to use via confirm popups.
 function genPasswordChoices() {
+  // array to hold user's choice of password character types 
   var storeChoices = []
 
   // check to see if user wants upper case letters
@@ -69,10 +72,12 @@ function genPasswordChoices() {
   }
 }
 
+// Checks the user's input for proper character length. 
 function checkInput() {
   var charLimit = prompt("Please choose amount of characters for password.")
-    // if characters are less than 8
+    // continually checks for input that is improper. Once input is within correct parameters, the loop will end.
   while (charLimit < 8 || charLimit > 128) {
+    // if characters are less than 8
     if (charLimit < 8) {
       alert("Password needs minimum of 8 characters.")
     } 
