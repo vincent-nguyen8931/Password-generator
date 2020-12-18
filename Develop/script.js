@@ -3,19 +3,11 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  checkInput()
   var pwChars = genPasswordChoices()
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  // var charLimit = prompt("Please choose amount of characters for password.")
-  // if char is less than 8 chars
-  // if (charLimit < 8) {
-  // alert("Password needs minimum of 8 characters.")
-  // }
-  
-  // // if char is greater than 128
-  // else if (charLimit > 128) {
-  // alert("Password has maximum of 128 characters.")
-  // } 
+ 
 
   passwordText.value = password;
 
@@ -76,11 +68,25 @@ function genPasswordChoices() {
     } 
   }
 }
-// console.log(genPasswordChoices(storeChoices))
+
+function checkInput() {
+  var charLimit = prompt("Please choose amount of characters for password.")
+    // if characters are less than 8
+  while (charLimit < 8 || charLimit > 128) {
+    if (charLimit < 8) {
+      alert("Password needs minimum of 8 characters.")
+    } 
+      
+      // if characters are greater than 128
+    else if (charLimit > 128) {
+      alert("Password has maximum of 128 characters.")
+    } 
+    var charLimit = prompt("Please choose amount of characters for password.")
+  }
+}
+
 function generatePassword() {
   
-
-
 }
 
 // Add event listener to generate button
