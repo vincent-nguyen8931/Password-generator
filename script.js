@@ -88,39 +88,68 @@ function genPasswordChoices() {
 function checkInput() {
   var charLimit = prompt("Please choose amount of characters for password.")
   var charSplit = charLimit.split("")
-  
-  if (charSplit !== 1 ||
-     charSplit !== 2 ||
-     charSplit !== 3 ||
-     charSplit !== 4 ||
-     charSplit !== 5 ||
-     charSplit !== 6 ||
-     charSplit !== 7 ||
-     charSplit !== 8 ||
-     charSplit !== 9 ||
-     charSplit !== 0) {
-    alert("Please input a number between 8 and 128.")
-    writePassword()
+  console.log(charSplit.pop)
+  // if (charLimit === 1 ||
+  //   charLimit === 2 ||
+  //   charLimit === 3 ||
+  //   charLimit === 4 ||
+  //   charLimit === 5 ||
+  //   charLimit === 6 ||
+  //   charLimit === 7 ||
+  //   charLimit === 8 ||
+  //   charLimit === 9 ||
+  //   charLimit === 0) {
+    for (i = 0; i < charSplit.length; i++) {
+
+      if (charSplit[i] === "1" ||
+      charSplit[i] === "2" ||
+      charSplit[i] === "3" ||
+      charSplit[i] === "4" ||
+      charSplit[i] === "5" ||
+      charSplit[i] === "6" ||
+      charSplit[i] === "7" ||
+      charSplit[i] === "8" ||
+      charSplit[i] === "9" ||
+      charSplit[i] === "0") {
+      while (charLimit < 8 || 
+        charLimit > 128)
+        {
+    // if characters are less than 8
+        if (charLimit < 8) {
+      alert("Password needs minimum of 8 characters.")
+    } 
+      
+      // if characters are greater than 128
+    else if (charLimit > 128) {
+      alert("Password has maximum of 128 characters.")
+    } 
+    // repeats checking for proper user's input
+    var charLimit = prompt("Please choose amount of characters for password.")
+  } return charLimit
      } else {
-    // continually checks for input that is improper. Once input is within correct parameters, the loop will end.
-    while (charLimit < 8 || 
-          charLimit > 128)
+      alert("Please input a number between 8 and 128.")
+      writePassword()
+     }
+    }
+    // // continually checks for input that is improper. Once input is within correct parameters, the loop will end.
+    // while (charLimit < 8 || 
+    //       charLimit > 128)
     
-          {
-      // if characters are less than 8
-      if (charLimit < 8) {
-        alert("Password needs minimum of 8 characters.")
-      } 
+    //       {
+    //   // if characters are less than 8
+    //   if (charLimit < 8) {
+    //     alert("Password needs minimum of 8 characters.")
+    //   } 
         
-        // if characters are greater than 128
-      else if (charLimit > 128) {
-        alert("Password has maximum of 128 characters.")
-      } 
-      // repeats checking for proper user's input
-      var charLimit = prompt("Please choose amount of characters for password.")
-    } return charLimit
+    //     // if characters are greater than 128
+    //   else if (charLimit > 128) {
+    //     alert("Password has maximum of 128 characters.")
+    //   } 
+    //   // repeats checking for proper user's input
+    //   var charLimit = prompt("Please choose amount of characters for password.")
+    // } return charLimit
   }
-}
+// }
 // Use characters selected for password and amount of characters desired to make the password. 
 function generatePassword(pwChars, charAmount) {
   var pwGenConvert = []
