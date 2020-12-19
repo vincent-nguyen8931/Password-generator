@@ -4,10 +4,12 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var charAmount = checkInput()
+  if (charAmount != null) {
   var pwChars = genPasswordChoices()
   var password = generatePassword(pwChars, charAmount);
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
+  }
 }
 
 // Generate alphabet by assigning the first and last characters of the alphabet to different variables. These variables use charCodeAt(0) to set their integer based on the UTF-16 code index. The for loop will iterate pushing each character of the alphabet onto the array as a string until it adds Z.
@@ -88,68 +90,33 @@ function genPasswordChoices() {
 function checkInput() {
   var charLimit = prompt("Please choose amount of characters for password.")
   var charSplit = charLimit.split("")
-  console.log(charSplit.pop)
-  // if (charLimit === 1 ||
-  //   charLimit === 2 ||
-  //   charLimit === 3 ||
-  //   charLimit === 4 ||
-  //   charLimit === 5 ||
-  //   charLimit === 6 ||
-  //   charLimit === 7 ||
-  //   charLimit === 8 ||
-  //   charLimit === 9 ||
-  //   charLimit === 0) {
-    for (i = 0; i < charSplit.length; i++) {
+  var numCheck = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-      if (charSplit[i] === "1" ||
-      charSplit[i] === "2" ||
-      charSplit[i] === "3" ||
-      charSplit[i] === "4" ||
-      charSplit[i] === "5" ||
-      charSplit[i] === "6" ||
-      charSplit[i] === "7" ||
-      charSplit[i] === "8" ||
-      charSplit[i] === "9" ||
-      charSplit[i] === "0") {
-      while (charLimit < 8 || 
-        charLimit > 128)
-        {
-    // if characters are less than 8
-        if (charLimit < 8) {
-      alert("Password needs minimum of 8 characters.")
-    } 
+  for (i = 0; i < charSplit.length; i++) {
+    // Checks for proper numerical values
+    if (numCheck.includes(charSplit[i]) !== true) {
+      alert("Please use a number between 8 and 128.")
+      return null
+    } else { 
       
-      // if characters are greater than 128
-    else if (charLimit > 128) {
-      alert("Password has maximum of 128 characters.")
+      while (charLimit < 8 || charLimit > 128) {
+      
+        // if characters are less than 8
+        if (charLimit < 8) {
+          alert("Password needs minimum of 8 characters.")
+        } 
+      
+        // if characters are greater than 128
+        if (charLimit > 128) {
+        alert("Password has maximum of 128 characters.")
+        }
+        // repeats checking for proper user's input
+        return null
+      }  
     } 
-    // repeats checking for proper user's input
-    var charLimit = prompt("Please choose amount of characters for password.")
   } return charLimit
-     } else {
-      alert("Please input a number between 8 and 128.")
-      writePassword()
-     }
-    }
-    // // continually checks for input that is improper. Once input is within correct parameters, the loop will end.
-    // while (charLimit < 8 || 
-    //       charLimit > 128)
-    
-    //       {
-    //   // if characters are less than 8
-    //   if (charLimit < 8) {
-    //     alert("Password needs minimum of 8 characters.")
-    //   } 
-        
-    //     // if characters are greater than 128
-    //   else if (charLimit > 128) {
-    //     alert("Password has maximum of 128 characters.")
-    //   } 
-    //   // repeats checking for proper user's input
-    //   var charLimit = prompt("Please choose amount of characters for password.")
-    // } return charLimit
-  }
-// }
+}
+     
 // Use characters selected for password and amount of characters desired to make the password. 
 function generatePassword(pwChars, charAmount) {
   var pwGenConvert = []
@@ -163,7 +130,6 @@ function generatePassword(pwChars, charAmount) {
   }
   return password
 }
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
