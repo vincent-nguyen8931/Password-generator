@@ -1,18 +1,21 @@
 # Password-generator
 
+![image](Assets\Password-generator-image.png)
+
 Description
 ------------
 
-This is my personal portfolio. It gives a small snippet about me, ways to contact me, and several photos I've taken.
+This is a password generator. It will ask for the amount of characters desired in password then whether the user wants the password to have upper case letters, lower case letters, numbers, and/or, special characters.
 
  Table of contents
 ---------------
 [Tools used](#Tools-used)<br />
-[View the site](#Deployed-here)<br />
+[Deployed here](#Deployed-here)<br />
 [What is added](#What-is-added)
-  * [Index page](#Index)
-  * [Portfolio page](#Portfolio)
-  * [Contact page](#Contact)
+ * [Generate alphabet](#Generate-alphabet)
+ * [Making password choices](#Making-password-choices)
+ * [Check proper input](#Check-proper-input)
+ * [Generate password](#Generate-password)
 
 [Lessons learned](#Lessons-learned) <br />
 [Credits](#Credits)<br />
@@ -21,188 +24,126 @@ This is my personal portfolio. It gives a small snippet about me, ways to contac
 Tools used
 -------------------
 
-* Bootstrap - Has premade layouts and components useful for making a webpage without having to start from scratch. 
-* CSS - Style the page with custom colors and spacing.
+* CSS - Style the page with custom colors, and spacing.
 * GitBash - Assist with version control via commits, push, and pull to and from GitHub.
 * GitHub - Site where the repository lies for deployment and edits.
-* HTML - Houses the entirety of the webpage and allows browsers to interpret the code as a webpage.
+* HTML - Contains the entirety of the webpage and allows browsers to interpret the code as a webpage.
+* JavaScript - Houses the majority of the function action for this webpage. 
 * VS Code - Application used to write and edit code for the webpage.
 
 Deployed here
 -------------
 
-Below is the link to the deployed webpage. 
-[Link to site](https://vincent-nguyen8931.github.io/My-Portfolio/)
+Below is the link to the deployed webpage. <br />
+[Link to site](https://vincent-nguyen8931.github.io/Password-generator/)
 
 
 What is added
 ------------------
 
+Generate alphabet
+-----------------------------
 
-This portfolio has three html pages. The first step is to change the title of each page to match what the html is going to contain.
-
-Next find a suitable navbar from Bootstrap and apply the below code snippet to each page. Modifications made were:
-* add my name to the navbar-brand line.
-* use in-line css to make the text white in navbar-brand.
-* push the page links to the far right of the page in the navbar-nav line. 
-* change which link becomes active depending on the page the user is on.
+This first function to discuss is how an alphabet is generated. This works by assigning the first and last characters of the alphabet to different variables. These variables use charCodeAt(0) to set their integer based on the UTF-16 code index. The "for loop" will iterate pushing each character of the alphabet onto the array as a string until it adds Z. 
 
 ```
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <aside class="container-fluid">
-      <!-- The style inline CSS is to change the text to white. This did not work when placed in the CSS and could be due to an override with how the navbar is setup. -->
-      <a class="navbar-brand" style="color: white;">Vincent Nguyen</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span></button>
-      <section class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <article class="navbar-nav ms-auto"> <!-- Push links to far right -->
-          <a class="nav-link" href="contact.html">Contact</a>
-          <a class="nav-link" href="portfolio.html">Portfolio</a>
-          <a class="nav-link active" href="index.html">About</a> <!-- Darkens link that user is on to give another method to determine what page they're on.-->
-        </article>
-      </section>
-    </aside>
-  </nav>
-  ```
-
-Index
-------------------
-
-The index page main is created from the below code.
+function genAlphabet(A, Z) {
+  var alphabet = [], i = A.charCodeAt(0), j = Z.charCodeAt(0);
+  for (; i <= j; i++) {
+    alphabet.push(String.fromCharCode(i));
+  }
+  return alphabet;
+}
 ```
-<main class="container" id="body-info">
-  <header>
-    <h1>About me</h1> <!-- Title of page user is on. -->
-    <hr>
-  </header>
-  <section class="row">
-    <article class="col">
-      <!-- Place image of myself here to give visitors a face to the name. -->
-      <img src="./Images/Self-image.jpg" id="index-img" class="float-start" alt="Picture of Vincent Nguyen">
-      <!-- Biography information here. Lists out my work experience and degree. -->
-      <p>Graduated from CSU Stanislaus with a Bachelors of Science in Computer Science.</p><br />
-      <p>Worked in the government as an Emergency management specialist. Our job required tracking, managing, and mitigating chemical, biological, radiological, and nuclear (CBRN) substances and threats.</p><br />
-      <p>You can reach me at:
-        <ul> <!-- List out ways to contact me. -->
-          <li>E-mail: <a href="mailto:vincent.nguyen8931@gmail.com">vincent.nguyen8931@gmail.com</a></li>
-          <li>LinkedIn: <a href="https://www.linkedin.com/in/vincent-nguyen-74226a107/">https://www.linkedin.com/in/vincent-nguyen-74226a107/</a></li>
-          <li>Github: <a href="https://github.com/vincent-nguyen8931">https://github.com/vincent-nguyen8931</a></li>
-        </ul>
-      </p>
-    </article>
-  </section>
-</main>
-```
-Place personal image here.
-```
-<!-- Place image of myself here to give visitors a face to the name. -->
-      <img src="./Images/Self-image.jpg" id="index-img" class="float-start" alt="Picture of Vincent Nguyen">
-```
-
-Biography placed after.
-```
-<!-- Biography information here. Lists out my work experience and degree. -->
-<p>Graduated from CSU Stanislaus with a Bachelors of Science in Computer Science.</p><br />
-<p>Worked in the government as an Emergency management specialist. Our job required tracking, managing, and mitigating chemical, biological, radiological, and nuclear (CBRN) substances and threats.</p><br />
-```
-
-Social links at the end.
-```
-<p>You can reach me at:
-  <ul> <!-- List out ways to contact me. -->
-    <li>E-mail: <a href="mailto:vincent.nguyen8931@gmail.com">vincent.nguyen8931@gmail.com</a></li>
-    <li>LinkedIn: <a href="https://www.linkedin.com/in/vincent-nguyen-74226a107/">https://www.linkedin.com/in/vincent-nguyen-74226a107/</a></li>
-    <li>Github: <a href="https://github.com/vincent-nguyen8931">https://github.com/vincent-nguyen8931</a></li>
-  </ul>
-</p>
-```
-
-Portfolio
+Making password choices
 ----------------
-The portfolio page main is created from the below code.
-
+The next function is creating the array of characters that will be used to generate a password. Below is the top part of the code that checks which characters the user wants to be used when generating a password. 
 ```
-<main class="container" id="body-info">
-  <header>
-    <h1>Portfolio</h1> <!-- Title of page user is on. -->
-    <hr>
-  </header>
-  <!-- Personal images taken by me. There are varying categories for each row.-->
-  <!-- Row 1 of images. My cat pictures. -->
-  <section class="row">
-    <article class="col">
-      <img src="./Images/Cat-1.jpg" id="portfolio-img1" class="float-start" alt="Cat sleeping long ways.">
-      <img src="./Images/Cat-2.jpg" id="portfolio-img2" class="float-start" alt="Cat sleeping in a ball.">
-    </article>
-  </section>
-  <!-- Row 2 of images. Universal Studios Japan Hogwarts pictures. -->
-  <section class="row">
-    <article class="col">
-      <img src="./Images/Hogwarts-1.jpg" id="portfolio-img3" alt="Hogwarts castle in Japan Universal Studios." class="float-start">
-      <img src="./Images/Hogwarts-2.jpg" id="portfolio-img4" alt="Snow covered roofs of Diagon Alley." class="float-start">
-    </article>
-  </section>
-  <!-- Row 3 of images. Lotte World pictures. -->
-  <section class="row">
-    <article class="col">                    
-      <img src="./Images/Lotte-World-1.jpg" id="portfolio-img5" alt="Exterior of Lotte World Castle." class="float-start">
-      <img src="./Images/Lotte-World-2.jpg" id="portfolio-img6" alt="Interior of Lotte World with tram visible." class="float-start">
-    </article>
-  </section>
-</main>
+function genPasswordChoices() {
+  // array to hold user's choice of password character types 
+  var storeChoices = []
+  // check to see if user wants upper case letters
+  var lettersUp = confirm("Do you want upper case letters in your password?")
+  // check to see if user wants lower case letters
+  var lettersLow = confirm("Do you want lower case letters in your password?")
+  // check to see if user wants numbers
+  var num = confirm("Do you want numbers in your password?")
+  // check to see if user wants special characters
+  var sChar = confirm("Do you want special characters in your password?")
 ```
-This is how the image is placed onto the page. These may be duplicated for as many rows desired.
+This is an example of one of the character types that can be generated.
 ```
-  <!-- Row 1 of images. My cat pictures. -->
-  <section class="row">
-    <article class="col">
-      <img src="./Images/Cat-1.jpg" id="portfolio-img1" class="float-start" alt="Cat sleeping long ways.">
-      <img src="./Images/Cat-2.jpg" id="portfolio-img2" class="float-start" alt="Cat sleeping in a ball.">
-    </article>
+//  if sChar is true, use this variable
+if (sChar === true) {
+  var str = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+  var special = str.split("")
+  // push special characters onto storeChoices array
+  for (i = 0; i < special.length; i++) {
+  storeChoices.push(special[i])
+  } 
 ```
 
-Contact
+Check proper input
+------------------------
+
+The function operates by asking the user for their input. The input is taken and split into an array. The array is ran through using a "for loop" interating each character comparing it to the if statement that checks if the input is a number. If the input is not a number, the function ends and sends a null which stops the password generation.
+```
+function checkInput() {
+  var charLimit = prompt("Please choose amount of characters for password.")
+  var charSplit = charLimit.split("")
+  var numCheck = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+  for (i = 0; i < charSplit.length; i++) {
+    // Checks for proper numerical values
+    if (numCheck.includes(charSplit[i]) !== true) {
+      alert("Please use a number between 8 and 128.")
+      return null
+    } else { 
+      
+      while (charLimit < 8 || charLimit > 128) {
+      
+        // if characters are less than 8
+        if (charLimit < 8) {
+          alert("Password needs minimum of 8 characters.")
+        } 
+      
+        // if characters are greater than 128
+        if (charLimit > 128) {
+        alert("Password has maximum of 128 characters.")
+        }
+        // repeats checking for proper user's input
+        return null
+      }  
+    } 
+  } return charLimit
+}
+```
+Generate password
 --------------
-The contact page main is created from the below code.
-```
-<main class="container" id="body-info">
-  <header>
-    <h1>Contact</h1> <!-- Title of page user is on. -->
-    <hr>
-  </header>
-  <!-- This is where the input field for visitor's name. -->
-  <article class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Name</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name">
-  </article>
-  <!-- This is where the input field for visitor's e-mail. -->
-  <article class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">E-mail</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="E-mail">
-  </article>
-  <!-- This is where the input field for visitor's message. -->
-  <article class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Message</label>
-    <textarea class="form-control" id="exampleFormControlInput1" rows="3" placeholder="Message"></textarea>
-  </article>
-  <!-- When submit is hit, the visitor will be taken to their computer's default e-mail applicaton. -->
-  <button type="button" class="btn btn-info"><a href="mailto:vincent.nguyen8931@gmail.com" id="e-mail-btn">Submit</button></a>
-</main>
-```
 
-Input fields are created with the code below. Duplicate the code for as many desired input fields. Edit the input field's name and placeholder to information desired.
+This function is linked to the function writePassword that is given as a starting function. Within this function, the characters selected for password generation and the amount of characters for the password are called here. The function runs the "for loop" generating one character at a time at random and storing in indexGen variable. The last step takes the password generated, removes all the commas and spaces, then passes the variable password where it will be displayed on the webpage. 
 ```
-<!-- This is where the input field for visitor's name. -->
-<article class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Name</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name">
-</article>
+// Use characters selected for password and amount of characters desired to make the password. 
+function generatePassword(pwChars, charAmount) {
+  var pwGenConvert = []
+  // choose random number based on characters selected and amount of characters chosen
+  for (i = 0; i < charAmount; i++){
+    indexGen = Math.floor(Math.random(pwChars) * pwChars.length)
+    // pushes character from pwChars based on index generated by indexGen into pwGenConvert
+    pwGenConvert.push(pwChars[indexGen])
+    // Takes the pwGenConvert array, removes the commas, and places the resulting elements into password variable.
+    password = pwGenConvert.join("")
+  }
+  return password
+}
 ```
 
 Lessons Learned
 ----------------
 
-When attemping to make the code check for characters i ran into several issues
+When attemping to make the code check for proper input I ran into several issues. This is a list of methods I attempted with no success. The charCodeAt() was perplexing me because the characters being compared are specific and standard across all browsers, making it the safest choice for me to check my inputs with. However, no input inside ever matched nor did any parameter set function properly. 
+
+Indexof did not function in the way I expected as it did not return a usuable value but rather displayed if something exists within the array. There was a method to make this work but would have extended my if statement to an unsightly state and still may not have worked as I would use the logic as shown in the code snippet below.
 
 * comparing to alphabet
 * uncmparing to alpahbet
@@ -223,50 +164,13 @@ When attemping to make the code check for characters i ran into several issues
   //   charLimit === 9 ||
   //   charLimit === 0) {
 ```
+I received help from our class TA's and found a method that did produce the results I expected. It was to return null when the input is incorrect instead of restarting the loop over. This helped to stop the rest of the loop from running or bypassing the error checks if a different error was passed.
 
-
-When applying the link spacing changes to the navbar, I applied the ms-auto to a specific link as shown below. The results is not the entire row of links being moved to the right but rather the link alone being moved relative to its position. This space was not very big and not what I was looking for.
-```
-<article class="navbar-nav"> 
-  <a class="nav-link ms-auto" href="contact.html">Contact</a>
-  <a class="nav-link" href="portfolio.html">Portfolio</a>
-  <a class="nav-link active" href="index.html">About</a> 
-</article>
-```
-
-Below is the code snippet from my portfolio images. Originally I placed one margin change to all images believeing it would apply the spacing I was looking for in every image. This would not be the case due to the difference of how the images on the index and portfolio htmls are placed. In index, the text is wrapped around the image to the right side. In portfolio, each image only has one image next to it before another row begins. I created an id for images in portfolio and index htmls to create different margins in the css.
-
-```
-<!-- Row 1 of images. My cat pictures. -->
-<section class="row">
-  <article class="col">
-    <img src="./Images/Cat-1.jpg" id="portfolio-img1" class="float-start" alt="Cat sleeping long ways.">
-    <img src="./Images/Cat-2.jpg" id="portfolio-img2" class="float-start" alt="Cat sleeping in a ball.">
-  </article>
-</section>
-<!-- Row 2 of images. Universal Studios Japan Hogwarts pictures. -->
-<section class="row">
-  <article class="col">
-    <img src="./Images/Hogwarts-1.jpg" id="portfolio-img3" alt="Hogwarts castle in Japan Universal Studios." class="float-start">
-    <img src="./Images/Hogwarts-2.jpg" id="portfolio-img4" alt="Snow covered roofs of Diagon Alley." class="float-start">
-  </article>
-</section>
-```
-This is the code with the image and text from index for comparison.
-```
-<section class="row">
-  <article class="col">
-    <!-- Place image of myself here to give visitors a face to the name. -->
-    <img src="./Images/Self-image.jpg" id="index-img" class="float-start" alt="Picture of Vincent Nguyen">
-    <!-- Biography information here. Lists out my work experience and degree. -->
-    <p>Graduated from CSU Stanislaus with a Bachelors of Science in Computer Science.</p><br />
-    <p>Worked in the government as an Emergency management specialist. Our job required tracking, managing, and mitigating chemical, biological, radiological, and nuclear (CBRN) substances and threats.</p><br />
-  </article>
-</section>
-```
 Credits
 ---------------
-LinkedIn: [https://www.linkedin.com/in/vincent-nguyen-74226a107/](https://www.linkedin.com/in/vincent-nguyen-74226a107/)
+LinkedIn: [https://www.linkedin.com/in/vincent-nguyen-74226a107/](https://www.linkedin.com/in/vincent-nguyen-74226a107/) <br />
+GitHub: [https://github.com/vincent-nguyen8931](https://github.com/vincent-nguyen8931)
+
 
 License
 ----------
