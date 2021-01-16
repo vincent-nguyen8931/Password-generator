@@ -1,6 +1,6 @@
 # Password-generator
 
-![image](Assets\Password-generator-image.png)
+![image](Password-generator-image.png)
 
 Description
 ------------
