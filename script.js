@@ -55,7 +55,6 @@ function genPasswordChoices() {
     var num = $("input[name='yesNumber']:checked").val();
     // check to see if user wants special characters
     var sChar = $("input[name='yesSymbols']:checked").val();
-    //  checks to ensure at least one character type is chosen.
   }
   // if lettersUp is true, use this variable
   if (lettersUp === "checked") {
